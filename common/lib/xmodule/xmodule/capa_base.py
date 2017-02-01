@@ -1086,7 +1086,8 @@ class CapaMixin(CapaFields):
             # without a stack trace
             else:
                 # Translators: {msg} will be replaced with a problem's error message.
-                msg = _(u"Error: {msg}").format(msg=inst.message)
+                (_, error_val, _) = sys.exc_info()
+                msg = _(u"Error: {msg}").format(msg=error_val)
 
             return {'success': msg}
 
