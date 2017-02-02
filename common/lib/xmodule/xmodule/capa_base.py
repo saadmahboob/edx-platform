@@ -1085,9 +1085,10 @@ class CapaMixin(CapaFields):
             # Otherwise, display just an error message,
             # without a stack trace
             else:
+            	# only return the error value of the exception 
+                message = inst.args[0].split("\\n")[-2].split(": ",1)[1]
                 # Translators: {msg} will be replaced with a problem's error message.
-                (_, error_val, _) = sys.exc_info()
-                msg = _(u"Error: {msg}").format(msg=error_val)
+                msg = _(u"Error: {msg}").format(msg=cgi.escape(message))
 
             return {'success': msg}
 
